@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>course</title>
+    <link rel="stylesheet" type="text/css" href="../css/translation.css">
+    <script src="../js/translation.js"></script>
+</head>
+<body>
+<section>
+    <nav>
+        <p id="logo">语译立方——神经拟真智能口译实训系统</p>
+        <ul>
+            <li><a href="index.html">主页</a></li>
+            <li><a href="test.html">译前预测试</a></li>
+            <li><a href="course.html">我的课程</a></li>
+            <li><a href="自主练习.html">自主练习</a></li>
+            <li><a href="个人中心.html">个人中心</a></li>
+        </ul>
+    </nav>
+    <div class="box1">
+        <h1>交替传译练习</h1>
+        <div class="part">
+            <p>Part1:</p>
+            <audio id="audioPlayer" controls>
+                <source src="../img/Part%201（关于国内生产总值的对话）.mp3" type="audio/mpeg">
+            </audio>
+            <img src="../img/1.png"/>
+            <button id="startBtn1">开始录音</button>
+            <button id="stopBtn1">停止录音</button>
+        </div>
+        <br>
+        <p id="result1">识别结果1</p>
+        <div class="part">
+            <p>Part2:</p>
+            <audio id="audioPlayer1" controls>
+                <source src="../img/Part%202（关于人类体型发展与粮食安全之间关系的讲话）.mp3" type="audio/mpeg">
+            </audio>
+            <img src="../img/2.png"/>
+            <button id="startBtn2">开始录音</button>
+            <button id="stopBtn2">停止录音</button>
+        </div>
+        <br>
+        <p id="result2">识别结果2</p>
+        <div class="part">
+            <p>Part3:</p>
+            <audio id="audioPlayer2" controls>
+                <source src="../img/Part%203%20（有关中国经济社会发展阶段的讲话).mp3" type="audio/mpeg">
+            </audio>
+            <img src="../img/3.png"/>
+            <button id="startBtn3">开始录音</button>
+            <button id="stopBtn3">停止录音</button>
+        </div>
+        <br>
+        <p id="result3">识别结果3</p>
+    </div>
+    <div class="di">实训结束</div>
+   <div class="box">
+       <button id="submitBtn">AI智能分析</button>
+       <button><a href="course.html">返回课堂</a></button>
+   </div>
+</section>
+</body>
+</html>

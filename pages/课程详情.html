@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>课程详情</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+    }
+    header, section, footer {
+      padding: 20px;
+      margin-top: 20px;
+      background: #f4f4f4;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      color: #56aaf3;
+    }
+    .evaluation-form {
+      margin-top: 20px;
+    }
+    .evaluation-form input, .evaluation-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .evaluation-form button {
+      padding: 10px 20px;
+      background: #5cb85c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .evaluation-form button:hover {
+      background: #4cae4c;
+    }
+    #classSelect{
+      font-size: 16px;
+      padding: 5px;
+      background-color: #d1d7db;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>课程详情</h1>
+  </header>
+  <section>
+    <h2>选择班级</h2>
+    <select id="classSelect" onchange="updateClassDetails()">
+      <option value="xx">1班</option>
+      <option value="yy">2班</option>
+      <option value="zz">3班</option>
+    </select>
+  </section>
+  <section>
+    <h2>所教内容</h2>
+    <p id="content">课程内容描述...</p>
+  </section>
+  <section>
+    <h2>学生情况</h2>
+    <p id="studentInfo">学生情况描述...</p>
+  </section>
+  <section>
+    <h2>教学目标</h2>
+    <input type="text" id="educationGoal" placeholder="请输入教学目标...">
+  </section>
+  <section>
+    <h2>评价功能</h2>
+    <div class="evaluation-form">
+      <input type="text" id="student-name" placeholder="您的姓名">
+      <textarea id="student-evaluation" placeholder="您的评价..."></textarea>
+      <button onclick="submitEvaluation()">提交评价</button>
+      <!-- 添加一个用于展示评价的容器 -->
+      <div id="evaluation-list"></div>
+
+    </div>
+  </section>
+  <footer>
+    <p>新文科（教师端）</p>
+  </footer>
+  <script>
+    //选择班级
+    function updateClassDetails() {
+    var selectedClass = document.getElementById('classSelect').value;
+    var content = document.getElementById('content');
+    var studentInfo = document.getElementById('studentInfo');
+
+    // 根据选择的班级更新所教内容和学生情况
+    if (selectedClass === 'xx') {
+      content.textContent = '口译；句式翻译技巧；作文';
+      studentInfo.textContent = '学生口语较差，发音不够准确，思考时间较长';
+    } else if (selectedClass === 'yy') {
+      content.textContent = '作文，写作高级词汇；四级翻译';
+      studentInfo.textContent = '学生写作能力需要加强';
+    } else if (selectedClass === 'zz') {
+      content.textContent = '雅思听力；交替传译';
+      studentInfo.textContent = '学生积极，乐于思考，善于发问';
+    }
+  // 初始化页面时更新一次内容
+  updateClassDetails();} //评价
+    function submitEvaluation() {
+      var name = document.getElementById('student-name').value;
+      var evaluation = document.getElementById('student-evaluation').value;
+
+      if (name && evaluation) {
+        var evaluationObj = {
+          name: name,
+          evaluation: evaluation
+        };
+
+        var evaluations = JSON.parse(localStorage.getItem('evaluations')) || [];
+        evaluations.push(evaluationObj);
+        localStorage.setItem('evaluations', JSON.stringify(evaluations));
+
+        document.getElementById('student-name').value = '';
+        document.getElementById('student-evaluation').value = '';
+        displayEvaluations();
+        alert('评价提交成功！');
+      } else {
+        alert('请填写您的姓名和评价！');
+      }
+    }
+
+    function displayEvaluations() {
+      var evaluations = [];
+      try {
+        evaluations = JSON.parse(localStorage.getItem('evaluations')) || [];
+      } catch (e) {
+        console.error('无法解析评价数据', e);
+      }
+
+      var evaluationList = document.getElementById('evaluation-list');
+      evaluationList.innerHTML = ''; // 清空当前显示的评价
+
+      var list = document.createElement('ul');
+      for (var i = 0; i < evaluations.length; i++) {
+        var item = document.createElement('li');
+        item.textContent = evaluations[i].name + ': ' + evaluations[i].evaluation;
+        list.appendChild(item);
+      }
+      evaluationList.appendChild(list);
+    }
+
+    window.onload = function() {
+      displayEvaluations();
+    };
+  </script>
+</div>
+</body>
+</html>

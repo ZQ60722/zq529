@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>course</title>
+    <link rel="stylesheet" type="text/css" href="../css/resource.css">
+    <script src="../js/resource.js"></script>
+</head>
+<body>
+<section>
+    <nav>
+        <p id="logo">语译立方——神经拟真智能口译实训系统</p>
+        <ul>
+            <li><a href="index2.html">主页</a></li>
+            <li><a href="course2.html">我的课程</a></li>
+            <li><a href="resource.html">平台资源</a></li>
+            <li><a href="个人中心2.html">个人中心</a></li>
+        </ul>
+    </nav>
+    <div class="di"><h1>平台内置资源</h1></div>
+    <div class="box1">
+        <div class="center-button">
+        <input type="file" id="fileInputCourse" style="display: none;" />
+        <button onclick="uploadFile('course')">人工导入</button>
+        </div>
+        <br>
+        <div class="box">
+            <div id="container1" class="container" onclick="showFile(1)"><img src="../img/N2.png"/></div>
+            <div id="container2" class="container" onclick="showFile(2)"><img src="../img/N2.png"/></div>
+            <div id="container3" class="container" onclick="showFile(3)"><img src="../img/N2.png"/></div>
+            <div id="container4" class="container" onclick="showFile(4)"><img src="../img/N2.png"/></div>
+        </div>
+        <br><br>
+        <div class="center-button">
+            <button>提取素材</button>
+        </div>
+        <br>
+        <div class="box">
+            <div class="container1"><p>能源</p><img src="../img/M3.webp"/></div>
+            <div class="container1"><p>外交</p><img src="../img/M1.jpg"/></div>
+            <div class="container1"><p>文化</p><img src="../img/M2.jpg"/></div>
+            <div class="container1"><p>医疗</p><img src="../img/M4.webp"/></div>
+            <div class="container1"><p>农业</p><img src="../img/M5.webp"/></div>
+        </div>
+    </div>
+    <script>
+    const filesCourse = {};
+    const filesVR = {};
+    let currentContainerCourse = 1;
+    let currentContainerVR = 5;
+
+    function uploadFile(type) {
+    if (type === 'course') {
+    document.getElementById('fileInputCourse').click();
+    } else if (type === 'vr') {
+    document.getElementById('fileInputVR').click();
+    }
+    }
+
+    document.getElementById('fileInputCourse').addEventListener('change', function(event) {
+    handleFileChange(event, filesCourse, currentContainerCourse);
+    currentContainerCourse = (currentContainerCourse % 4) + 1;
+    });
+
+    document.getElementById('fileInputVR').addEventListener('change', function(event) {
+    handleFileChange(event, filesVR, currentContainerVR);
+    currentContainerVR = (currentContainerVR % 4) + 5;
+    });
+
+    function handleFileChange(event, filesObject, currentContainer) {
+    const file = event.target.files[0];
+    if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+    const container = document.getElementById('container' + currentContainer);
+    const fileInfo = document.createElement('div');
+    fileInfo.className = 'file-info';
+    fileInfo.textContent = file.name;
+    container.innerHTML = '';
+    container.appendChild(fileInfo);
+    if (file.type.match('image.*')) {
+    const img = document.createElement('img');
+    img.src = e.target.result;
+    container.appendChild(img);
+    }
+    filesObject[currentContainer] = file;
+    };
+    reader.readAsDataURL(file);
+    }
+    }
+
+    function showFile(containerNumber) {
+    const file = containerNumber <= 4 ? filesCourse[containerNumber] : filesVR[containerNumber];
+    if (file && file.type.match('image.*')) {
+    const container = document.getElementById('container' + containerNumber);
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+    URL.revokeObjectURL(img.src);
+    };
+    container.innerHTML = ''; // 清空容器
+    container.appendChild(img); // 在容器中显示图片
+    } else if (file) {
+    alert('文件不能直接显示，类型为：' + file.type);
+    } else {
+    alert('没有文件');
+    }
+    }
+    </script>
+
+    <div class="di">识别环节</div>
+    <div class="box1">
+        <div class="box">
+            <div class="container">视频转文本</div>
+            <div class="container">文本转视频</div>
+        </div>
+    </div>
+    <p>难易程度：</p><p>生成VR场景</p>
+    <div class="di">发布练习</div>
+    <div class="box1">
+        <a href="../题目/test1.html"><div class="lan">2018年度上半年全国翻译专业资格(水平) 考试英语3级口译实务真题</div></a>
+        <a href="../题目/test2.html"><div class="lan">2017年度下半年全国翻译专业资格(水平) 考试英语3级口译实务真题</div></a>
+        <a href="../题目/test3.html"><div class="lan">2017年度上半年全国翻译专业资格(水平) 考试英语3级口译实务真题</div></a>
+    </div>
+</section>
+<div class="di" style="background-color: #333">语译立方—智能口译实训系统</div>
+</body>
+</html>

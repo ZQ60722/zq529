@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+  <link rel="stylesheet" type="text/css" href="../css/test.css">
+  <script src="../js/test.js"></script>
+</head>
+<body>
+<nav>
+  <p id="logo">语译立方——神经拟真智能口译实训系统</p>
+  <ul>
+    <li><a href="index.html">主页</a></li>
+    <li><a href="test.html">译前预测试</a></li>
+    <li><a href="course.html">我的课程</a></li>
+    <li><a href="自主练习.html">自主练习</a></li>
+    <li><a href="个人中心.html">个人中心</a></li>
+  </ul>
+</nav>
+<h2>口译能力预测试</h2>
+<hr>
+<header>
+  <div class="video">
+    <video src="../img/v01.mp4" controls loop ></video>
+  </div>
+  <div class="question">
+    <h4>请播放视频，根据所听内容作答</h4>
+    <form action="/submit-your-form-endpoint" method="post">
+      <!-- 第1个问题 -->
+      <label for="question1">James chose to take Scandinavian Studies because when he was a child:</label>
+      <select name="question1" id="question1">
+        <option value="option1">he was often taken to Denmark</option>
+        <option value="option2">his mother spoke to him in Danish</option>
+        <option value="option3">a number of Danish people visited his famliy</option>
+      </select>
+
+      <!-- 第2个问题 -->
+      <label for="question2">They agree that James's literature paper this term will be on:</label>
+      <select name="question2" id="question2">
+        <option value="option1">19th century playwrights</option>
+        <option value="option2">the lcelandic sagas</option>
+        <option value="option3">modern Scandinavian novels</option>
+      </select>
+
+      <!-- 第3个问题 -->
+      <label for="question3">Beth recommends that James's paper should be:</label>
+      <select name="question3" id="question3">
+        <option value="option1">a historical overview of the genre.</option>
+        <option value="option2">an in-depth analysis of a single writer.</option>
+        <option value="option3">a study of the social background to the literature</option>
+      </select>
+
+      <!-- 提交按钮 -->
+      <input type="submit" value="提交答案">
+    </form>
+  </div>
+</header>
+<!-- tiankong -->
+<hr>
+<div class="container">
+  <div class="content-box">
+    <div class="question1">
+      <h3>请播放音频，按所听到的信息作答</h3>
+      <form id="answerForm">
+        <div class="fill-blank">
+          <p>第1题<strong><input type="text" name="answer1" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第2题<strong><input type="text" name="answer2" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第3题<strong><input type="text" name="answer3" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第4题<strong><input type="text" name="answer4" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第5题<strong><input type="text" name="answer5" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第6题<strong><input type="text" name="answer6" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第7题<strong><input type="text" name="answer7" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第8题<strong><input type="text" name="answer8" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第9题<strong><input type="text" name="answer9" required></strong>。</p>
+        </div>
+        <div class="fill-blank">
+          <p>第10题<strong><input type="text" name="answer10" required></strong>。</p>
+        </div>
+        <input type="submit" value="提交答案">
+      </form>
+      <p id="feedback" style="display: none;"></p>
+    </div>
+    <div class="image">
+      <audio id="bgmusic" controls>
+        <source src="../img/S1.mp3" type="audio/mpeg">
+      </audio>
+      <img src="../img/1-10.png" alt="描述图片">
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="content-box">
+    <div class="image">
+      <h3>请根据题目要求完成听后概述</h3>
+      <audio  controls>
+        <source src="../img/test4.mp3" type="audio/mpeg">
+      </audio>
+      <img src="../img/test1.png" alt="1"/></div>
+    <div class="question1">
+      <p style="margin-top: 15px">part1:</p>
+      <button id="startBtn1">开始语音输入</button>
+      <button id="stopBtn1">停止语音输入</button>
+      <p id="result1">第一部分识别结果</p>
+      <button id="submitBtn">AI智能分析</button>
+      <div id="resultDisplay"></div>
+      <p style="margin-top: 15px">part2:</p>
+      <button id="startBtn2">开始语音输入</button>
+      <button id="stopBtn2">停止语音输入</button>
+      <p id="result2">第二部分识别结果</p>
+      <p style="margin-top: 15px">part3:</p>
+      <button id="startBtn3">开始语音输入</button>
+      <button id="stopBtn3">停止语音输入</button>
+      <p id="result3">第三部分识别结果</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

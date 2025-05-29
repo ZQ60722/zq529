@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            color: black;
+            text-align: center;
+        }
+        .top{
+            width: 68%;
+            color: white;
+            background-color: #56aaf3;
+            margin: auto auto;
+            padding:10px;
+        }
+        .top a{
+            color: white;
+        }
+        header {
+            margin: 0 auto;
+            width: 68%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0 0 40px 40px;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            background-color: #ffffff;
+        }
+        .box{
+            margin: 0;
+            width: 80%;
+            background-color: #f5f5f5;
+            display: flex;
+            text-align: center;
+            border-radius: 40px;
+            justify-content: center;
+        }
+        .container {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #aaa8a8;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .file-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .center-button{
+            padding: 10px;
+            background-color: #56aaf3;
+            color: white;
+            margin: 20px;
+        }
+        button{
+            color: #56aaf3;
+            background-color: white;
+            border:none;
+        }
+        button:hover{
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+<div class="top">课程练习</div>
+<header>
+    <div class="center-button">
+        <input type="file" id="fileInputCourse" style="display: none;" />
+        <button onclick="uploadFile('course')">上传课程内容</button>
+    </div>
+    <div class="box">
+        <div id="container1" class="container" onclick="showFile(1)"></div>
+        <div id="container2" class="container" onclick="showFile(2)"></div>
+        <div id="container3" class="container" onclick="showFile(3)"></div>
+        <div id="container4" class="container" onclick="showFile(4)"></div>
+    </div>
+
+    <div class="center-button">
+        <input type="file" id="fileInputVR" style="display: none;" />
+        <button onclick="uploadFile('vr')">上传VR场景</button>
+    </div>
+    <div class="box">
+        <div id="container5" class="container" onclick="showFile(5)"></div>
+        <div id="container6" class="container" onclick="showFile(6)"></div>
+        <div id="container7" class="container" onclick="showFile(7)"></div>
+        <div id="container8" class="container" onclick="showFile(8)"></div>
+    </div>
+    <div class="top">
+        <a href="course2.html" style="text-decoration: none">退出</a></div>
+    <script>
+        const filesCourse = {};
+        const filesVR = {};
+        let currentContainerCourse = 1;
+        let currentContainerVR = 5;
+
+        function uploadFile(type) {
+            if (type === 'course') {
+                document.getElementById('fileInputCourse').click();
+            } else if (type === 'vr') {
+                document.getElementById('fileInputVR').click();
+            }
+        }
+
+        document.getElementById('fileInputCourse').addEventListener('change', function(event) {
+            handleFileChange(event, filesCourse, currentContainerCourse);
+            currentContainerCourse = (currentContainerCourse % 4) + 1;
+        });
+
+        document.getElementById('fileInputVR').addEventListener('change', function(event) {
+            handleFileChange(event, filesVR, currentContainerVR);
+            currentContainerVR = (currentContainerVR % 4) + 5;
+        });
+
+        function handleFileChange(event, filesObject, currentContainer) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const container = document.getElementById('container' + currentContainer);
+                    const fileInfo = document.createElement('div');
+                    fileInfo.className = 'file-info';
+                    fileInfo.textContent = file.name;
+                    container.innerHTML = '';
+                    container.appendChild(fileInfo);
+                    if (file.type.match('image.*')) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        container.appendChild(img);
+                    }
+                    filesObject[currentContainer] = file;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showFile(containerNumber) {
+            const file = containerNumber <= 4 ? filesCourse[containerNumber] : filesVR[containerNumber];
+            if (file && file.type.match('image.*')) {
+                const container = document.getElementById('container' + containerNumber);
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                img.onload = () => {
+                    URL.revokeObjectURL(img.src);
+                };
+                container.innerHTML = ''; // 清空容器
+                container.appendChild(img); // 在容器中显示图片
+            } else if (file) {
+                alert('文件不能直接显示，类型为：' + file.type);
+            } else {
+                alert('没有文件');
+            }
+        }
+    </script>
+</header>
+</body>
+</html>

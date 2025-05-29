@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Center</title>
+    <link rel="stylesheet" href="../css/个人中心.css">
+    <script src="../js/个人中心.js"></script>
+</head>
+<body>
+<nav>
+    <p id="logo">语译立方——神经拟真智能口译实训系统</p>
+    <ul>
+        <li><a href="index2.html">主页</a></li>
+        <li><a href="course2.html">我的课程</a></li>
+        <li><a href="resource.html">平台资源</a></li>
+        <li><a href="个人中心2.html">个人中心</a></li>
+    </ul>
+</nav>
+<!-- Header Section -->
+<div class="profile-container">
+    <img src="../img/cuixue.png" alt="用户头像" class="avatar">
+    <div class="username">在你身后啦</div>
+    <form id="userForm" class="user-info">
+        <h2>用户信息</h2>
+        <div class="form-group">
+            <label for="email"><strong>邮箱：</strong></label>
+            <input type="email" id="email" name="email" placeholder="请输入你的邮箱" value="">
+        </div>
+        <div class="form-group">
+            <label for="phone"><strong>电话：</strong></label>
+            <input type="tel" id="phone" name="phone" placeholder="请输入手机号" value="">
+        </div>
+        <div class="form-group">
+            <label for="email"><strong>加入班级：</strong></label>
+            <input type="text" id="class" name="class" placeholder="请输入班级号" value="">
+        </div>
+        <div class="form-group">
+            <label for="signature"><strong>签名：</strong></label>
+            <input type="text" id="signature" name="signature" placeholder="求问贤者，若是一切如梦，人能够何时醒来" value="">
+        </div>
+        <button type="submit">更新信息</button>
+    </form>
+
+    <div class="balance-box">
+        <h2>已教学课程数</h2>
+        <p id="balance">0</p>
+    </div>
+    <div class="container">
+        <input type="number" id="rechargeAmount" placeholder="增加课程数">
+        <button onclick="rechargeBalance()">确定</button>
+    </div>
+    <div class="di"><a href="index.html"><button>切换学生端</button></a>
+        <a href="../登陆注册.html"><button>退出登录</button></a>
+    </div>
+</div>
+</body>
+</html>
