@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登陆注册</title>
+  <link rel="stylesheet" type="text/css" href="../Eng/css/登陆注册.css">
+  <script src="../Eng/js/登陆注册.js"></script>
+</head>
+<body>
+<section>
+  <audio src="./img/m01.ogg" autoplay controls></audio>
+  <div class="container right-panel-active">
+    <!-- Sign Up -->
+    <div class="container__form container--signup">
+      <form action="#" class="form" id="form1">
+        <h2 class="form__title">注册</h2>
+        <input type="text" placeholder="用户名" class="input" name="username" required />
+        <input type="text" placeholder="账号" class="input" name="account" required />
+        <input type="password" placeholder="密码" class="input" name="password" required />
+        <!-- 添加复选框 -->
+        <label for="teacherCheckbox" style="color: #999999">我是教师
+        <input type="checkbox" id="teacherCheckbox" name="isTeacher" value="true"></label>
+        <button type="submit" class="btn">注册</button>
+        <div class="feedback" id="feedbackSignup"></div>
+      </form>
+    </div>
+
+    <!-- Sign In -->
+    <div class="container__form container--signin">
+      <form action="#" class="form" id="form2">
+        <h2 class="form__title">登录</h2>
+        <input type="text" placeholder="账号" class="input" required/>
+        <input type="password" placeholder="密码" class="input" required/>
+        <label for="teacherCheckbox" style="color: #999999">我是教师
+          <input type="checkbox" id="teacherCheckbox1" name="isTeacher" value="true"></label>
+        <button type="submit" class="btn">登录</button>
+        <a href="#" class="btn--forgot" id="forgotPassword">忘记密码</a>
+        <div class="feedback" id="feedbackSignin"></div>
+      </form>
+    </div>
+
+
+    <!-- Overlay -->
+    <div class="container__overlay">
+      <div class="overlay">
+        <div class="overlay__panel overlay--left">
+          <button class="btn" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay__panel overlay--right">
+          <button class="btn" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <button id="close" class="close">&times;</button>
+      <h2>忘记密码</h2>
+      <input type="text" id="phoneInput" placeholder="输入手机号码" required/>
+      <button type="button" id="verifyPhoneButton">验证</button>
+  </div>
+</div>
+
+</body>
+</html>
